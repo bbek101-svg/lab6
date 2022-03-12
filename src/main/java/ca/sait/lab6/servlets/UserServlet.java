@@ -1,7 +1,9 @@
 
 package ca.sait.lab6.servlets;
 
+import ca.sait.lab6.models.Role;
 import ca.sait.lab6.models.User;
+import ca.sait.lab6.services.RoleService;
 import ca.sait.lab6.services.UserService;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -64,6 +66,35 @@ public class UserServlet extends HttpServlet {
               String password = request.getParameter("password");
               String active = request.getParameter("active");
               String role = request.getParameter("role");
+              RoleService roleservice = new RoleService();
+              UserService service = new UserService();
+               List<Role> roles = null;
+               Role ro = null;
+            try {
+             roles  = roleservice.getAll();
+            } catch (Exception ex) {
+                Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+              for(Role rol: roles){
+                  if((rol.getName()).equals(role)){
+                      ro = new Role(rol.getId(), role);
+                  }
+              }
+              boolean isActive = active != null;
+            try {
+                service.insert(email, isActive, firstName, lastName, password, ro);
+            } catch (Exception ex) {
+                Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+            List<User> users = service.getAll();
+            request.setAttribute("users", users);
+            
+             getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+              
         }
     }
 

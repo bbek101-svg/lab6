@@ -41,6 +41,7 @@
                                 <th>E-mail</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
+                                <th>Role</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -50,6 +51,7 @@
                                     <td>${user.email}</td>
                                     <td>${user.firstName}</td>
                                     <td>${user.lastName}</td>
+                                    <td>${(user.role).getName()}</td>
                                     <td>
                                     <a href="edit?${user.email}">Edit</a>
                                      <a href="delete?${user.email}">Delete</a>
