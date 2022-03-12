@@ -30,6 +30,7 @@ public class ConnectionPool {
             return dataSource.getConnection();
         } catch (SQLException e) {
             System.out.println(e);
+            System.out.println("SQL EXCEPTION OCCURED");
             return null;
         }
     }
