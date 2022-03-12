@@ -37,7 +37,7 @@ public class UserServlet extends HttpServlet {
             List<User> users = service.getAll();
             request.setAttribute("users", users);
             
-             this.getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
+             getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
         } catch (Exception ex) {
             Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
