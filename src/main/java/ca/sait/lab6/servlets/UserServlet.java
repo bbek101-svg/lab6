@@ -55,7 +55,16 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        String action = request.getParameter("action");
+         
+        if(action != null && action.equals("add")){
+            String email = request.getParameter("email");
+            String firstName = request.getParameter("fname");
+             String lastName = request.getParameter("lname");
+              String password = request.getParameter("password");
+              String active = request.getParameter("active");
+              String role = request.getParameter("role");
+        }
     }
 
 

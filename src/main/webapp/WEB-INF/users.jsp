@@ -13,25 +13,59 @@
         
         <div class="container">
             <h1>User Management System</h1>
-            <table class="table">
-            <thead>
-                <tr>
-                    <th>E-mail</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach items="${users}" var="user">
-                    <<tr>
-                        <td>${user.email}</td>
-                         <td>${user.firstName}</td>
-                         <td>${user.lastName}</td>
-                    </tr>
+            
+            <div class="row">
+                <div class ="col-3">
+                    <h2>Add an User</h2>
+                    <form action="user" method="POST">
+                        <input type="hidden" name="action" value="add">
+                        <input type="text" class="form-control" placeholder="Email" name="email">
+                        <input type="text" class="form-control" placeholder="First Name" name="fname">
+                        <input type="text" class="form-control" placeholder="Last Name" name="lname">
+                        <input type="text" class="form-control" placeholder="Password" name="password">
+                        <br>Active <input type ="checkbox" class="form-check-input" name="active" value="active">
+                        <br><select name="role">
+                            <option value="system admin">system admin</option>
+                            <option value="regular user">regular user</option>
+                            <option value="company admin">company admin</option>
+                        </select>
+                        <br>
+                        <button type ="submit">Add</button>
+                    </form>
+                </div>
+                     
+                <div class="col-6">
+                    <table class="table table-dark table-striped">
+                        <thead>
+                            <tr>
+                                <th>E-mail</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach items="${users}" var="user">
+                                <tr>
+                                    <td>${user.email}</td>
+                                    <td>${user.firstName}</td>
+                                    <td>${user.lastName}</td>
+                                    <td>
+                                    <a href="edit?${user.email}">Edit</a>
+                                     <a href="delete?${user.email}">Delete</a>
+                                    </td>
+                                </tr>
                     
-                </c:forEach>
-            </tbody>
-        </table>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+                <div class ="col-3">
+                    <h2>Update an User</h2>
+                </div>
+                
+            </div>
+            
         </div>
         
     </body>
