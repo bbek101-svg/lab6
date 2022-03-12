@@ -34,7 +34,7 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         UserService service = new UserService();
-        
+        String query = request.getQueryString();
         try {
             List<User> users = service.getAll();
             request.setAttribute("users", users);
@@ -43,6 +43,10 @@ public class UserServlet extends HttpServlet {
         } catch (Exception ex) {
             Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+        if(query != null && query.contains("delete")){
+            request.setAttribute("query", query);
+        }
+        getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
       
     }
 

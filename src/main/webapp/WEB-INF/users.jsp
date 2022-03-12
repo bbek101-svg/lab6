@@ -32,6 +32,7 @@
                         <br>
                         <button type ="submit">Add</button>
                     </form>
+                    <p> ${query}</p>
                 </div>
                      
                 <div class="col-6">
@@ -53,8 +54,8 @@
                                     <td>${user.lastName}</td>
                                     <td>${(user.role).getName()}</td>
                                     <td>
-                                    <a href="edit?${user.email}">Edit</a>
-                                     <a href="delete?${user.email}">Delete</a>
+                                    <a href="user?edit=${user.email}">Edit</a>
+                                     <a href="user?delete=${user.email}">Delete</a>
                                     </td>
                                 </tr>
                     
@@ -64,10 +65,24 @@
                 </div>
                 <div class ="col-3">
                     <h2>Update an User</h2>
+                    <form action="user" method="POST">
+                        <input type="hidden" name="action" value="update">
+                        <input type="text" class="form-control" placeholder="Email" name="email" value="${email}">
+                        <input type="text" class="form-control" placeholder="First Name" name="fname" value="${fname}">
+                        <input type="text" class="form-control" placeholder="Last Name" name="lname" value="${lname}">
+   
+                        <br><select name="role">
+                            <option value="system admin">system admin</option>
+                            <option value="regular user">regular user</option>
+                            <option value="company admin">company admin</option>
+                        </select>
+                        <br>
+                        <button type ="submit">Edit</button>
+                    </form>
                 </div>
                 
             </div>
-            
+                        
         </div>
         
     </body>
